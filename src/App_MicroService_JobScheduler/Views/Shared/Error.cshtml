@@ -1,0 +1,32 @@
+﻿@model ErrorViewModel
+@{
+    Layout = "_Layout";
+}
+
+<div class="container pt-4">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1><span class="fa fa-warning text-danger fa-3x"></span></h1>
+            <h1 class="text-danger" style="font-size:120px">500 </h1>
+            <h5 class="p-3">
+                <environment names="Development">
+                    @if (Model != null && Model.ShowRequestId)
+                    {
+                        <strong>Request ID:</strong> <code>@Model.RequestId</code>
+                    }
+                </environment>
+
+                If you inform the management of the collection about the occurrence of this error, the necessary measures will be taken as soon as possible to solve this problem.
+
+            </h5>
+            <h4>
+                Here is my email address to contact with me : <a href="mailto:FarshadFahimi5@gmail.com"> 
+                    <strong>FarshadFahimi5@gmail.com</strong>
+                </a>
+            </h4>
+            <a href="@Url.Action("Index","Home")" class="btn btn-warning btn-lg">
+                <strong>Back to home page</strong>
+            </a>
+        </div>
+    </div>
+</div>

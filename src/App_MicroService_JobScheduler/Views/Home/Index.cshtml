@@ -1,0 +1,41 @@
+﻿@{
+    void CardGenerator(string headerTitle, string ctaLink, string colorType, bool isSpa = false, string description = "")
+    {
+        <div class="col-12 col-lg-4 col-md-4">
+            <div class="card">
+                <div class="card-header bg-transparent border-@colorType bg-@colorType">
+                    <h6>@headerTitle</h6>
+                </div>
+                <div class="card-body">
+                    @if (!string.IsNullOrEmpty(description))
+                    {
+                        <p class="card-text">
+                            @description
+                        </p>
+                    }
+                    @if(isSpa){
+                        <a hx-get="/@ctaLink" hx-target="#content-body" class="btn btn-@colorType">
+                        Click to go
+                    </a>
+                    }else{
+                        <a href="/@ctaLink" class="btn btn-@colorType">
+                        Click to go
+                    </a>
+                    }
+                </div>
+            </div>
+        </div>
+
+    }
+}
+
+<div class="row">
+    @{
+        CardGenerator("Swagger Open API", "swagger", "success");
+        CardGenerator("Hangfire Dashboard", "jobs", "primary");
+        CardGenerator("Jobs editable table", "JobDetail/Datatable", "info",true, "Here you can see / set running schedule for any job that is available.");
+    }
+
+    <hr />
+</div>
+

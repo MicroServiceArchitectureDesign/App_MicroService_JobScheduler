@@ -1,0 +1,89 @@
+﻿@model App_MicroService_JobScheduler.Controllers.JobDetailModel
+@{
+    Layout = null;
+}
+<div class="row">
+    <div class="col-12 col-lg-8 col-md-8 container justify-content-center">
+        <div class="card shadow-lg">
+            <div class="card-header">
+                <h5 class="mt-2 fw-normal"> Update job "@Model.Name"</h5>
+            </div>
+            <div class="card-body">
+                @* <form method="post" asp-action="Update" asp-controller="JobDetail"> *@
+                <form hx-post="/JobDetail/Update" hx-target="#content-body">
+                    <div class="text-danger" asp-validation-summary="All"></div>
+                    <input class="form-control" type="hidden" asp-for="Id" />
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-lg-6 mb-3">
+                            <div class="form-group">
+                                <label asp-for="Name" class="mb-1"></label>
+                                <input class="form-control" type="text" asp-for="Name" readonly="readonly" disabled="disabled" />
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label asp-for="IntervalType" class="mb-1"></label>
+                                <select asp-for="IntervalType" class="form-control form-select" onchange="handleOnChangeIntervalType(this)">
+                                    <option value="Second">Second</option>
+                                    <option value="Minute">Minute</option>
+                                    <option value="Hour">Hour</option>
+                                    <option value="Day">Daily</option>
+                                    <option value="Month">Month</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label asp-for="Interval" class="mb-1"></label>
+                                <input class="form-control" type="number" min="1" asp-for="Interval" onchange="handleOnKeyUpInterval(this)" onkeyup="handleOnKeyUpInterval(this)" />
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="alert alert-success d-none" id="cronExpressionStatement"></div>
+                        </div>
+                        <div class="col-12 mt-4 mt-lg-0 mt-md-0">
+                            <div class="alert alert-info ">
+                                If you need some help to figure out how to write your own Cron expression,
+                                please visit : <a class="fw-bolder" href="https://crontab.cronhub.io/" target="_blank">
+                                    Cron Hub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="justify-content-center d-flex">
+                        <a hx-get="/JobDetail/Datatable" hx-target="#content-body" class="me-4 btn btn-outline-danger mt-3 w-25">
+                            Back
+                        </a>
+                        <button class="btn btn-primary mt-3 w-25" type="submit">
+                            Submit <span class="fa fa-save"></span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{ 
+
+
+<script>
+    function handleOnKeyUpInterval(e) {
+        var currentValue = $(e).val();
+        var intervalType = $(e).closest('form').find('#IntervalType').val();
+        setStatement(intervalType, currentValue);
+    }
+    function handleOnChangeIntervalType(e) {
+        var currentValue = $(e).val();
+        var interval = $(e).closest('form').find('#Interval').val();
+        setStatement(currentValue, interval);
+    }
+
+    function setStatement(intervalType, intervalValue) {
+        var statement = `This job will run every : <b> ${parseInt(intervalValue)} ${intervalType} </b>`;
+        $("#cronExpressionStatement").html(statement);
+        $("#cronExpressionStatement").removeClass('d-none');
+    }
+</script>
+}

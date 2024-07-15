@@ -1,0 +1,16 @@
+﻿global using Microsoft.EntityFrameworkCore;
+global using Hangfire;
+global using App_MicroService_JobScheduler.Contracts;
+global using App_MicroService_JobScheduler.Utilities.Extensions;
+global using static App_MicroService_JobScheduler.Utilities.ConstantVariables;
+global using App_MicroService_JobScheduler.Models.Contexts;
+global using App_MicroService_JobScheduler.Models.JobServiceEntities;
+global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.AspNetCore.Mvc;
+global using Hangfire.Dashboard;
+global using App_MicroService_JobScheduler.Filters;
+global using App_MicroService_JobScheduler.JobImplementations;
+global using App_MicroService_JobScheduler.Services;
+global using Microsoft.AspNetCore.Authentication.Cookies;
+global using Microsoft.OpenApi.Models;
+global using System.Net;

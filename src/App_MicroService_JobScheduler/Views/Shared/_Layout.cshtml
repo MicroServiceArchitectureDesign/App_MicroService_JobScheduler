@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="author" content="Farshad Fahimi">
+    <title>Microservices - JOB service</title>
+    <link href="~/BS5/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/BS5/Css/Dashboard.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow text-center">
+        <a class=" mt-1 navbar-brand col-md-4 col-lg-4 me-0 px-3 fs-6" asp-action="Index" asp-controller="Home"> Tehran Payment Job Services </a>
+
+        @if (User.Identity?.IsAuthenticated ?? false)
+        {
+            <div class="navbar-nav">
+                <div class="nav-item text-nowrap">
+                    <a class="nav-link px-3" asp-controller="Auth" asp-action="Logout">Sign out</a>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="navbar-nav">
+                <div class="nav-item ">
+                    <a class="nav-link px-3" asp-controller="Auth" asp-action="Login">Sign in</a>
+                </div>
+            </div>
+        }
+    </header>
+
+    <div class="container">
+        <div class="row mt-4">
+            <div id="content-body" class="col-12 col-lg-12 col-xl-12 pl-3 pr-3" style="min-height:500px">
+                @RenderBody()
+            </div>
+
+            <a class="btn btn-warning d-none w-auto button-back-to-top" id="back-to-top">
+                <span class="fa fa-arrow-up"></span>
+            </a>
+        </div>
+    </div>
+        <footer class="font-small text-white bg-dark fixed-bottom">
+
+            <div class="footer-copyright text-center py-3">
+                © 2020 Copyright:
+                <a href="/" class=" text-white "> Farshad Fahimi </a>
+            </div>
+
+        </footer>
+
+    <script src="~/BS5/js/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/BS5/js/htmx.min.js" asp-append-version="true"></script>
+
+    <script>
+        
+        var btn = $('#back-to-top');
+        $(window).scroll(function () {
+            if ($(window).scrollTop() > 500) {
+                btn.removeClass('d-none');
+            } else {
+                btn.addClass('d-none');
+            }
+        });
+
+        btn.on('click', function (e) {
+            e.preventDefault();
+            $('html, body').animate({ scrollTop: 0 }, '200');
+        });
+    </script>
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

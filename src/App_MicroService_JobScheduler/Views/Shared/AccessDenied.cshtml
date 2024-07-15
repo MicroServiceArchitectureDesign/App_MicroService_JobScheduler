@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Access Denied";
+}
+
+<Container>
+    <Row>
+        <Frest-Col size="12" md="6" class-names="text-center">
+            <div class="card bg-transparent shadow-none">
+                <div class="card-content">
+                    <div class="card-body text-center bg-transparent miscellaneous">
+                        <img src="/app-assets/images/pages/not-authorized.png" class="img-fluid" alt="not authorized" width="400">
+                    </div>
+                </div>
+            </div>
+        </Frest-Col>
+        <Frest-Col size="12" md="6" class-names="text-center">
+            <div class="card bg-transparent shadow-none mt-md-5 pt-md-5">
+                <div class="card-content">
+                    <div class="card-body text-center bg-transparent miscellaneous">
+                        <h1 class="my-2 error-title text-danger">
+                            عدم دسترسی
+                        </h1>
+                        <p>
+                            <strong>
+                                کاربر محترم :
+                            </strong>
+                            شما دسترسی به مطالب و محتوای درخواستی را ندارید
+                        </p>
+                        <a asp-action="Index" asp-controller="Home" asp-area="" class="btn btn-primary glow">بازشگت به صفه اصلی</a>
+                    </div>
+                </div>
+            </div>
+        </Frest-Col>
+    </Row>
+</Container>

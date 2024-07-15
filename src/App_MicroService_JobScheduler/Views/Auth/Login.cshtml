@@ -1,0 +1,32 @@
+﻿@model App_MicroService_JobScheduler.Controllers.LoginModel
+
+<div class="row">
+    <div class="col-12 col-lg-4 col-md-4 container justify-content-center">
+        <div class="card shadow-lg">
+            <div class="card-header text-center">
+                <h5 class="mt-2 fw-normal">Please sign in</h5>
+            </div>
+            <div class="card-body">
+                @* <form method="post" asp-action="Login" asp-controller="Auth"> *@
+                <form hx-post="/Auth/Login" hx-swap="innerHTML">
+                    <div class="text-danger fw-bold" asp-validation-summary="All"></div>
+                    <input class="form-control" type="hidden" asp-for="ReturnUrl" />
+                    <div class="form-group">
+                        <label asp-for="Email" class="mb-1"></label>
+                        <input class="form-control" type="text" asp-for="Email" />
+                    </div>
+                    <div class="form-group mt-3">
+                        <label asp-for="Password" class="mb-1"></label>
+                        <input class="form-control" type="password" asp-for="Password" />
+                    </div>
+                    
+                    <div class="justify-content-center d-flex">
+                        <button class="btn btn-primary mt-3 w-50" type="submit">
+                            Login <span class="fa fa-sign-in"></span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
